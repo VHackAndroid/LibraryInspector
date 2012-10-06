@@ -28,7 +28,7 @@
 			    <category android:name="android.intent.category.DEFAULT"/>
 			    <data android:mimeType="application/be.vhackandroid.inspectorlibrary.views"/>
             </intent-filter>
-        </activity>
+            </activity>
          
         <activity
             android:name=".LibraryInspectorStart"
