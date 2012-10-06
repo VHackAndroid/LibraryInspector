@@ -28,7 +28,7 @@
 			    <category android:name="android.intent.category.DEFAULT"/>
 			    <data android:mimeType="application/be.vhackandroid.inspectorlibrary.views"/>
             </intent-filter>
-        </activity>
+            </activity>
          
         <activity
             android:name=".LibraryInspectorStart"
@@ -45,6 +45,43 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity
+            android:name=".LibraryInspectorThemeTaal"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".LibraryInspectorThemeTaalHelp"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".LibraryInspectorThemeDieren"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".LibraryInspectorThemeDierenHelp"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".LibraryInspectorThemeGeloof"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".LibraryInspectorThemeGeloofHelp"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".LibraryInspectorThemeMuziek"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+         <activity
+            android:name=".LibraryInspectorThemeMuziekHelp"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".LibraryInspectorThemeSport"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+         <activity
+            android:name=".LibraryInspectorThemeSportHelp"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".LibraryInspectorThemeWereld"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".LibraryInspectorThemeWereldHelp"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
     </application>
 
 </manifest>

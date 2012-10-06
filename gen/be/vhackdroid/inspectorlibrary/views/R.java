@@ -38,27 +38,30 @@ public final class R {
         public static final int title=0x7f02000e;
     }
     public static final class id {
+        public static final int button1=0x7f070005;
+        public static final int checkBox1=0x7f070003;
         public static final int introComic=0x7f070000;
         public static final int introComicArrow=0x7f070001;
-        public static final int textView_test=0x7f070002;
-        public static final int themesButton1=0x7f070005;
-        public static final int themesButton2=0x7f070008;
-        public static final int themesButton3=0x7f07000b;
-        public static final int themesButton4=0x7f07000e;
-        public static final int themesButton5=0x7f070011;
-        public static final int themesButton6=0x7f070014;
-        public static final int themesKey1=0x7f070003;
-        public static final int themesKey2=0x7f070006;
-        public static final int themesKey3=0x7f070009;
-        public static final int themesKey4=0x7f07000c;
-        public static final int themesKey5=0x7f07000f;
-        public static final int themesKey6=0x7f070012;
-        public static final int themesTitle1=0x7f070004;
-        public static final int themesTitle2=0x7f070007;
-        public static final int themesTitle3=0x7f07000a;
-        public static final int themesTitle4=0x7f07000d;
-        public static final int themesTitle5=0x7f070010;
-        public static final int themesTitle6=0x7f070013;
+        public static final int linearLayout1=0x7f070002;
+        public static final int textView_test=0x7f070004;
+        public static final int themesButton1=0x7f070008;
+        public static final int themesButton2=0x7f07000b;
+        public static final int themesButton3=0x7f07000e;
+        public static final int themesButton4=0x7f070011;
+        public static final int themesButton5=0x7f070014;
+        public static final int themesButton6=0x7f070017;
+        public static final int themesKey1=0x7f070006;
+        public static final int themesKey2=0x7f070009;
+        public static final int themesKey3=0x7f07000c;
+        public static final int themesKey4=0x7f07000f;
+        public static final int themesKey5=0x7f070012;
+        public static final int themesKey6=0x7f070015;
+        public static final int themesTitle1=0x7f070007;
+        public static final int themesTitle2=0x7f07000a;
+        public static final int themesTitle3=0x7f07000d;
+        public static final int themesTitle4=0x7f070010;
+        public static final int themesTitle5=0x7f070013;
+        public static final int themesTitle6=0x7f070016;
     }
     public static final class layout {
         public static final int introscreen=0x7f030000;
@@ -66,12 +69,18 @@ public final class R {
         public static final int splash=0x7f030002;
         public static final int start=0x7f030003;
         public static final int themedieren=0x7f030004;
-        public static final int themegeloof=0x7f030005;
-        public static final int thememuziek=0x7f030006;
-        public static final int themepicker=0x7f030007;
-        public static final int themesport=0x7f030008;
-        public static final int themetaal=0x7f030009;
-        public static final int themewereld=0x7f03000a;
+        public static final int themedierenhelp=0x7f030005;
+        public static final int themegeloof=0x7f030006;
+        public static final int themegeloofhelp=0x7f030007;
+        public static final int thememuziek=0x7f030008;
+        public static final int thememuziekhelp=0x7f030009;
+        public static final int themepicker=0x7f03000a;
+        public static final int themesport=0x7f03000b;
+        public static final int themesporthelp=0x7f03000c;
+        public static final int themetaal=0x7f03000d;
+        public static final int themetaalhelp=0x7f03000e;
+        public static final int themewereld=0x7f03000f;
+        public static final int themewereldhelp=0x7f030010;
     }
     public static final class string {
         public static final int app_name=0x7f050001;
