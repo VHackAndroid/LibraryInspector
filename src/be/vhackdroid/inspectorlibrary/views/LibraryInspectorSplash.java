@@ -10,6 +10,7 @@ import android.os.Bundle;
 
 public class LibraryInspectorSplash extends Activity {
 
+	public static DBCreator dbh;
 	boolean active = true;
 	int splashTime = 1000;
 	Context context;
@@ -29,7 +30,8 @@ public class LibraryInspectorSplash extends Activity {
 			@Override
 			public void run() {
 				if (SettingsManager.isFirstRun(prefs)) {
-					DBCreator.createDB(context);
+					//DBCreator.createDB(context);
+					dbh = new DBCreator(context); 
 				}
 				SettingsManager.initGame(prefs);
 				try {
