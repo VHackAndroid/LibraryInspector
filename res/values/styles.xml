@@ -33,7 +33,7 @@
 		<item name="android:paddingTop">3dip</item>
 		<item name="android:gravity">center</item>
 	</style>
-
+<!-- TEST -->
 	<!-- THEMES -->
 	<style name="ThemeName" parent="@style/Wrap_Content">
 		<item name="android:textColor">@color/black</item>
