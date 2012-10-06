@@ -62,21 +62,16 @@ public final class R {
     }
     public static final class layout {
         public static final int introscreen=0x7f030000;
-        public static final int splash=0x7f030001;
-        public static final int start=0x7f030002;
-        public static final int themedieren=0x7f030003;
-        public static final int themegeloof=0x7f030004;
-        public static final int thememuziek=0x7f030005;
-        public static final int themepicker=0x7f030006;
-        public static final int themesport=0x7f030007;
-        public static final int themetaal=0x7f030008;
-        public static final int themewereld=0x7f030009;
-=======
         public static final int nfcdummy=0x7f030001;
         public static final int splash=0x7f030002;
         public static final int start=0x7f030003;
-        public static final int themepicker=0x7f030004;
->>>>>>> 5b140bcd154c5b38ac3aa439d4dff9d76b2cb291
+        public static final int themedieren=0x7f030004;
+        public static final int themegeloof=0x7f030005;
+        public static final int thememuziek=0x7f030006;
+        public static final int themepicker=0x7f030007;
+        public static final int themesport=0x7f030008;
+        public static final int themetaal=0x7f030009;
+        public static final int themewereld=0x7f03000a;
     }
     public static final class string {
         public static final int app_name=0x7f050001;
