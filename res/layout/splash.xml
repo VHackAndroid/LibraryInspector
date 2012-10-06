@@ -2,9 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/Full_Size.Body" >
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hello" />
+    <TextView style="@style/SplashTitle" android:text="Inspector Library - Laden..." />
+    
+    <ImageView style="@style/Wrap_Content" android:src="@drawable/androidinspector"/>
 
+    
+    
 </LinearLayout>
