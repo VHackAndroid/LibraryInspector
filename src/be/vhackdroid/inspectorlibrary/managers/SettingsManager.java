@@ -15,4 +15,25 @@ public class SettingsManager {
 		editor.putBoolean("firstRun", firstRun);
 		editor.commit();
 	}
+	
+	public static void initGame(SharedPreferences pref){
+		SharedPreferences.Editor editor = pref.edit();
+		editor.putBoolean("StatusKey1", false);
+		editor.putBoolean("StatusKey2", false);
+		editor.putBoolean("StatusKey3", false);
+		editor.putBoolean("StatusKey4", false);
+		editor.putBoolean("StatusKey5", false);
+		editor.putBoolean("StatusKey6", false);
+		editor.commit();
+	}
+	
+	public static Boolean getStatusKey(SharedPreferences pref, int keyNumber){
+		return pref.getBoolean("StatusKey" + keyNumber, false);	
+	}
+	
+	public static void setStatusKey(SharedPreferences pref, int keyNumber, boolean status){
+		SharedPreferences.Editor editor = pref.edit();
+		editor.putBoolean("StatusKey" + keyNumber, status);
+		editor.commit();
+	}
 }

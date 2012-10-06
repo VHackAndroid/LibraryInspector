@@ -31,6 +31,7 @@ public class LibraryInspectorSplash extends Activity {
 				if (SettingsManager.isFirstRun(prefs)) {
 					DBCreator.createDB(context);
 				}
+				SettingsManager.initGame(prefs);
 				try {
 					int waited = 0;
 					while (active && (waited < splashTime)) {
