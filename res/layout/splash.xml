@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Full_Size.Body" >
+	style="@style/Full_Size.Body">
 
-    <TextView style="@style/SplashTitle" android:text="Inspector Library - Laden..." />
-    
-    <ImageView style="@style/Wrap_Content" android:src="@drawable/androidinspector"/>
+	<ImageView style="@style/Full_Width" android:src="@drawable/title" />
+	<ImageView style="@style/Wrap_Content" android:src="@drawable/androidinspector"   />
+	<TextView style="@style/SplashTitle" android:text="Laden..." android:layout_weight="1" />
 
-    
-    
 </LinearLayout>

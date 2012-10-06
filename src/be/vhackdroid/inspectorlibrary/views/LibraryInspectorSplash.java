@@ -1,10 +1,10 @@
 package be.vhackdroid.inspectorlibrary.views;
 
-import be.vhackdroid.inspectorlibrary.R;
 import be.vhackdroid.inspectorlibrary.database.DBCreator;
 import be.vhackdroid.inspectorlibrary.managers.SettingsManager;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -20,9 +20,10 @@ public class LibraryInspectorSplash extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash);
 
-		context = this.getApplicationContext();
+		context = this;
 		prefs = this.getApplicationContext().getSharedPreferences(
 				SettingsManager.PREF_FILE, MODE_PRIVATE);
+		
 		// thread for counting down the SplashScreen
 		Thread splashTread = new Thread() {
 			@Override
@@ -42,8 +43,7 @@ public class LibraryInspectorSplash extends Activity {
 					// do nothing, don't care
 				} finally {
 					finish();
-					// TODO: startActivity(new Intent(context,
-					// Dashboard.class));
+					startActivity(new Intent(context, LibraryInspectorStart.class));
 				}
 			}
 		};
