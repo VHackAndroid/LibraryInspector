@@ -2,10 +2,12 @@ package be.vhackdroid.inspectorlibrary.models;
 
 public class Book {
 	
-	public int id;
-	public String titel;
-	public int barcode;
-	public boolean hired;
+	protected int id;
+	protected String titel;
+	protected String barcode;
+	protected boolean hired;
+	protected String clue;
+	protected int themeId;
 	
 	/**
 	 * @return the id
@@ -34,13 +36,13 @@ public class Book {
 	/**
 	 * @return the barcode
 	 */
-	public int getBarcode() {
+	public String getBarcode() {
 		return barcode;
 	}
 	/**
 	 * @param barcode the barcode to set
 	 */
-	public void setBarcode(int barcode) {
+	public void setBarcode(String barcode) {
 		this.barcode = barcode;
 	}
 	/**
@@ -54,5 +56,21 @@ public class Book {
 	 */
 	public void setHired(boolean hired) {
 		this.hired = hired;
+	}
+	
+	public String getClue(){
+		return clue;
+	}
+	
+	public void setClue(String clue){
+		this.clue = clue;
+	}
+	
+	public int getThemeId(){
+		return themeId;
+	}
+	
+	public void setThemeId(int themeId){
+		this.themeId = themeId;
 	}
 }

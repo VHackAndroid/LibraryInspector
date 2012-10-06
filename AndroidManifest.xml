@@ -7,7 +7,10 @@
     <uses-sdk android:minSdkVersion="10" />
 
     <uses-permission android:name="android.permission.NFC" />
-    <uses-feature android:name="android.hardware.nfc" android:required="true" />
+
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -16,37 +19,35 @@
         android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
          >
         <activity
-            android:label="@string/app_name"
-            android:name=".LibraryInspectorSplash" >
-             
-        </activity>
-        
-        <activity 
-            android:name=".LibraryInspectorNfcDummy"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            android:name=".LibraryInspectorSplash"
+            android:label="@string/app_name" >
             <intent-filter>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
-			    <category android:name="android.intent.category.DEFAULT"/>
-			    <data android:mimeType="application/be.vhackandroid.inspectorlibrary.views"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-         
+        <activity
+            android:name=".LibraryInspectorNfcDummy"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="application/be.vhackandroid.inspectorlibrary.views" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".LibraryInspectorStart"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
             android:name=".LibraryInspectorThemes"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        
         <activity
             android:name=".LibraryInspectorIntro"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
-			<intent-filter >
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        
         <activity
             android:name=".LibraryInspectorThemeTaal"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
@@ -68,13 +69,13 @@
         <activity
             android:name=".LibraryInspectorThemeMuziek"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-         <activity
+        <activity
             android:name=".LibraryInspectorThemeMuziekHelp"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
             android:name=".LibraryInspectorThemeSport"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-         <activity
+        <activity
             android:name=".LibraryInspectorThemeSportHelp"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
