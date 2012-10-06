@@ -66,12 +66,18 @@ public final class R {
         public static final int splash=0x7f030002;
         public static final int start=0x7f030003;
         public static final int themedieren=0x7f030004;
-        public static final int themegeloof=0x7f030005;
-        public static final int thememuziek=0x7f030006;
-        public static final int themepicker=0x7f030007;
-        public static final int themesport=0x7f030008;
-        public static final int themetaal=0x7f030009;
-        public static final int themewereld=0x7f03000a;
+        public static final int themedierenhelp=0x7f030005;
+        public static final int themegeloof=0x7f030006;
+        public static final int themegeloofhelp=0x7f030007;
+        public static final int thememuziek=0x7f030008;
+        public static final int thememuziekhelp=0x7f030009;
+        public static final int themepicker=0x7f03000a;
+        public static final int themesport=0x7f03000b;
+        public static final int themesporthelp=0x7f03000c;
+        public static final int themetaal=0x7f03000d;
+        public static final int themetaalhelp=0x7f03000e;
+        public static final int themewereld=0x7f03000f;
+        public static final int themewereldhelp=0x7f030010;
     }
     public static final class string {
         public static final int app_name=0x7f050001;
