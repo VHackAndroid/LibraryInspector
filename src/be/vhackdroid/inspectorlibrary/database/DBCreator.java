@@ -39,14 +39,16 @@ public class DBCreator extends SQLiteOpenHelper {
 		String[] clues = { "Gitaar", "Piano", "Drums", "Saxofoon" };
 
 		for (int i = 0; i < titels.length; i++) {
-			db.execSQL("INSERT INTO tblBooks(id, titel, barcode, hired, clue, themeId) VALUES("
+			String sql = "INSERT INTO tblBooks(id, titel, barcode, hired, clue, themeId) VALUES("
 					+ i
 					+ ", '"
 					+ titels[i]
 					+ "', '"
 					+ barcodes[i]
 					+ "',0,'"
-					+ clues[i] + "', " + i);
+					+ clues[i] + "', " + i + ")";
+			Log.d("sql",sql);
+			db.execSQL(sql);
 		}
 	}
 
@@ -72,6 +74,8 @@ public class DBCreator extends SQLiteOpenHelper {
 
 		createBooks(db);
 		createThemes(db);
+		
+		Log.d("DBCREATOR", "TBL AANGEMAAKT + GEVULD");
 	}
 
 	@Override
@@ -84,7 +88,7 @@ public class DBCreator extends SQLiteOpenHelper {
 	}
 
 	public Book getBookByBarcode(String barcode) {
-		SQLiteDatabase db = this.getReadableDatabase();
+		SQLiteDatabase db = this.getWritableDatabase();
 		Book book = null;
 		String sql = "SELECT * FROM tblBooks WHERE barcode = '" + barcode
 				+ "';";
@@ -112,7 +116,7 @@ public class DBCreator extends SQLiteOpenHelper {
 	}
 
 	public Theme getTheme(int themeId) {
-		SQLiteDatabase db = this.getReadableDatabase();
+		SQLiteDatabase db = this.getWritableDatabase();
 		Theme theme = null;
 
 		String sql = "SELECT * FROM tblThemes WHERE id = " + themeId;
