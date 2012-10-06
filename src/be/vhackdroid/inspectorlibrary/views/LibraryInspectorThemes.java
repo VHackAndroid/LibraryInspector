@@ -64,7 +64,7 @@ public class LibraryInspectorThemes extends Activity {
 		pijlGeloof.setOnClickListener(new OnClickListener() {			
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(context, LibraryInspectorThemeMuziek.class));
+				startActivity(new Intent(context, LibraryInspectorNfcDummy.class));
 			}
 		});
 	}
