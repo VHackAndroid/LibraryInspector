@@ -1,4 +1,4 @@
-package be.vhackdroid.inspectorlibrary.settings;
+package be.vhackdroid.inspectorlibrary.managers;
 
 import android.content.SharedPreferences;
 

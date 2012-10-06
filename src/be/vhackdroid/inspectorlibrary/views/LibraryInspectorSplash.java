@@ -2,7 +2,7 @@ package be.vhackdroid.inspectorlibrary.views;
 
 import be.vhackdroid.inspectorlibrary.R;
 import be.vhackdroid.inspectorlibrary.database.DBCreator;
-import be.vhackdroid.inspectorlibrary.settings.SettingsManager;
+import be.vhackdroid.inspectorlibrary.managers.SettingsManager;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -11,7 +11,7 @@ import android.os.Bundle;
 public class LibraryInspectorSplash extends Activity {
 
 	boolean active = true;
-	int splashTime = 2500;
+	int splashTime = 1000;
 	Context context;
 	SharedPreferences prefs;
 
@@ -45,7 +45,6 @@ public class LibraryInspectorSplash extends Activity {
 					finish();
 					// TODO: startActivity(new Intent(context,
 					// Dashboard.class));
-					stop();
 				}
 			}
 		};
