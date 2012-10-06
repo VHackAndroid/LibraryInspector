@@ -1,5 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/Full_Size.Body" >
-    <ImageView style="@style/Full_Width" android:src="@drawable/title"/> 
+    <ScrollView style="@style/Full_Size" >
+        <LinearLayout
+            style="@style/Full_Size"
+            android:orientation="vertical" >
+            <ImageView
+                style="@style/Full_Width"
+                android:src="@drawable/title" />
+            <RelativeLayout style="@style/Full_Width">
+            	<TextView style="@style/ThemePageTitle" android:text="Muziek" />
+            	<ImageView
+            	    android:id="@+id/themesMuziekHelpKnop"
+            	    android:layout_width="50dp"
+            	    android:layout_height="50dp"
+            	    android:src="@drawable/help" 
+            	    android:layout_alignParentRight="true"/>"
+            </RelativeLayout>
+            
+            <RelativeLayout style="@style/Full_Width" android:layout_marginTop="20dp">
+                <ImageView
+            	    android:id="@+id/themesMuziekGuitar"
+            	    android:layout_width="50dp"
+            	    android:layout_height="50dp"
+            	    android:src="@drawable/guitarstatus0" 
+            	    android:layout_alignParentLeft="true"
+            	    android:layout_marginLeft="60dp"/>
+                <ImageView
+            	    android:id="@+id/themesMuziekDrums"
+            	    android:layout_width="50dp"
+            	    android:layout_height="50dp"
+            	    android:src="@drawable/drumsstatus0" 
+            	    android:layout_alignParentRight="true"
+            	    android:layout_marginRight="60dp"/>
+            </RelativeLayout>
+            
+            <RelativeLayout style="@style/Full_Width" android:layout_marginTop="20dp">
+                <ImageView
+            	    android:id="@+id/themesMuziekPiano"
+            	    android:layout_width="50dp"
+            	    android:layout_height="50dp"
+            	    android:src="@drawable/pianostatus0" 
+            	    android:layout_alignParentLeft="true"
+            	    android:layout_marginLeft="60dp"/>
+                <ImageView
+            	    android:id="@+id/themesMuziekSax"
+            	    android:layout_width="50dp"
+            	    android:layout_height="50dp"
+            	    android:src="@drawable/saxstatus0" 
+            	    android:layout_alignParentRight="true"
+            	    android:layout_marginRight="60dp"/>
+            </RelativeLayout>
+            
+            <ImageView
+                android:id="@+id/ThemeMuziekSleutel"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/keystatus0"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="80dp"
+                />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

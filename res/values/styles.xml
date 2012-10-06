@@ -46,4 +46,12 @@
 		<item name="android:layout_width">50dp</item>
 		<item name="android:layout_height">50dp</item>
 	</style>
+	
+	<style name="ThemePageTitle" parent="@style/Wrap_Content">
+		<item name="android:textColor">@color/brown</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:textSize">25dip</item>
+		<item name="android:paddingLeft">10dp</item>
+		<item name="android:layout_centerVertical">true</item>
+	</style>
 </resources>
