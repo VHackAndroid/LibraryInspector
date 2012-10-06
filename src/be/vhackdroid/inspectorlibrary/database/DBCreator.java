@@ -10,7 +10,7 @@ public class DBCreator {
 		
 		// CREATE TABLES
 		db.execSQL("CREATE TABLE IF NOT EXISTS tblBooks(" +
-				"id INT, titel VARCHAR, barcode VARCHAR, hired INT)");
+				"id INT, titel VARCHAR, barcode VARCHAR, categorie VARHCAR, hired INT)");
 		
 		db.execSQL("CREATE TABLE IF NOT EXISTS tblBooksThemes(" +
 				"id INT, bookId INT, themeId INT)");
@@ -27,8 +27,8 @@ public class DBCreator {
 	}
 	
 	private static void createBooks(SQLiteDatabase db){
-		db.execSQL("INSERT INTO tblBooks(id, titel, barcode, hired) VALUES(" +
-				"1, 'Boek1', '01030063020', 0)");
+		db.execSQL("INSERT INTO tblBooks(id, titel, barcode, categorie, hired) VALUES(" +
+				"1, 'Boek1', '01030063020', 'Muziek', 0)");
 	}
 	
 	private static void createThemes(SQLiteDatabase  db){
