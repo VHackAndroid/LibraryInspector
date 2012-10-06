@@ -14,7 +14,7 @@
 		<item name="android:layout_height">fill_parent</item>
 	</style>
 	<style name="Full_Size.Body">
-		<item name="android:background">@color/white</item>
+		<item name="android:background">@drawable/background</item>
 		<item name="android:orientation">vertical</item>
 	</style>
 	<style name="Wrap_Content">
