@@ -1,119 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/Full_Size.Body" >
+
     <ImageView
         style="@style/Full_Width"
         android:src="@drawable/title" />
+
     <ScrollView style="@style/Full_Size.Body" >
+
         <LinearLayout style="@style/Full_Size.Body" >
+
             <!-- THEMA 1 -->
-            <RelativeLayout style="@style/RowLayout" >
+
+            <RelativeLayout
+                style="@style/RowLayout"
+                android:layout_marginBottom="5dp"
+                android:background="@color/blue" >
+
                 <ImageView
-					style="@style/ThemeIcon"
-                    android:src="@drawable/keystatus0"
-                    android:id="@+id/themesKey1" />
+                    android:id="@+id/themesKey1"
+                    style="@style/ThemeIcon"
+                    android:src="@drawable/keystatus0" />
+
                 <TextView
-                    style="@style/ThemeName"
-                    android:text="Thema1"
                     android:id="@+id/themesTitle1"
+                    style="@style/ThemeName"
                     android:layout_toRightOf="@id/themesKey1"
-                     />
+                    android:text="Muziek" />
+
                 <ImageView
-					style="@style/ThemeIcon"
-                    android:src="@drawable/arrowright"
                     android:id="@+id/themesButton1"
-                    android:layout_alignParentRight="true"  />"
+                    style="@style/ThemeIcon"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/arrowright" />
+"
+            
             </RelativeLayout>
-             <!-- THEMA 2 -->
-                <RelativeLayout style="@style/RowLayout" >
+            <!-- THEMA 2 -->
+
+            <RelativeLayout
+                style="@style/RowLayout"
+                android:layout_marginBottom="5dp" >
+
                 <ImageView
-					style="@style/ThemeIcon"
-                    android:src="@drawable/keystatus0"
-                    android:id="@+id/themesKey2" />
+                    android:id="@+id/themesKey2"
+                    style="@style/ThemeIcon"
+                    android:src="@drawable/keystatus0" />
+
                 <TextView
-                    style="@style/ThemeName"
-                    android:text="Thema1"
                     android:id="@+id/themesTitle2"
+                    style="@style/ThemeName"
                     android:layout_toRightOf="@id/themesKey2"
-                     />
+                    android:text="Thema1" />
+
                 <ImageView
-					style="@style/ThemeIcon"
-                    android:src="@drawable/arrowright"
                     android:id="@+id/themesButton2"
-                    android:layout_alignParentRight="true"  />
+                    style="@style/ThemeIcon"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/arrowright" />
             </RelativeLayout>
-             <!-- THEMA 3 -->
-                    <RelativeLayout style="@style/RowLayout" >
+            <!-- THEMA 3 -->
+
+            <RelativeLayout
+                style="@style/RowLayout"
+                android:layout_marginBottom="5dp" >
+
                 <ImageView
-					style="@style/ThemeIcon"
-                    android:src="@drawable/keystatus0"
-                    android:id="@+id/themesKey3" />
+                    android:id="@+id/themesKey3"
+                    style="@style/ThemeIcon"
+                    android:src="@drawable/keystatus0" />
+
                 <TextView
-                    style="@style/ThemeName"
-                    android:text="Thema1"
                     android:id="@+id/themesTitle3"
+                    style="@style/ThemeName"
                     android:layout_toRightOf="@id/themesKey3"
-                     />
+                    android:text="Thema1" />
+
                 <ImageView
-					style="@style/ThemeIcon"
-                    android:src="@drawable/arrowright"
                     android:id="@+id/themesButton3"
-                    android:layout_alignParentRight="true"  />
+                    style="@style/ThemeIcon"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/arrowright" />
             </RelativeLayout>
-             <!-- THEMA 4 -->
-                        <RelativeLayout style="@style/RowLayout" >
+            <!-- THEMA 4 -->
+
+            <RelativeLayout
+                style="@style/RowLayout"
+                android:layout_marginBottom="5dp" >
+
                 <ImageView
-					style="@style/ThemeIcon"
-                    android:src="@drawable/keystatus0"
-                    android:id="@+id/themesKey4" />
+                    android:id="@+id/themesKey4"
+                    style="@style/ThemeIcon"
+                    android:src="@drawable/keystatus0" />
+
                 <TextView
-                    style="@style/ThemeName"
-                    android:text="Thema1"
                     android:id="@+id/themesTitle4"
+                    style="@style/ThemeName"
                     android:layout_toRightOf="@id/themesKey4"
-                     />
+                    android:text="Thema1" />
+
                 <ImageView
-					style="@style/ThemeIcon"
-                    android:src="@drawable/arrowright"
                     android:id="@+id/themesButton4"
-                    android:layout_alignParentRight="true"  />
+                    style="@style/ThemeIcon"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/arrowright" />
             </RelativeLayout>
-             <!-- THEMA 5 -->
-                            <RelativeLayout style="@style/RowLayout" >
+            <!-- THEMA 5 -->
+
+            <RelativeLayout
+                style="@style/RowLayout"
+                android:layout_marginBottom="5dp" >
+
                 <ImageView
-					style="@style/ThemeIcon"
-                    android:src="@drawable/keystatus0"
-                    android:id="@+id/themesKey5" />
+                    android:id="@+id/themesKey5"
+                    style="@style/ThemeIcon"
+                    android:src="@drawable/keystatus0" />
+
                 <TextView
-                    style="@style/ThemeName"
-                    android:text="Thema1"
                     android:id="@+id/themesTitle5"
-                    android:layout_toRightOf="@id/themesKey5"
-                     />
-                <ImageView
-					style="@style/ThemeIcon"
-                    android:src="@drawable/arrowright"
-                    android:id="@+id/themesButton5"
-                    android:layout_alignParentRight="true"  />
-            </RelativeLayout>
-             <!-- THEMA 6 -->
-                                <RelativeLayout style="@style/RowLayout" >
-                <ImageView
-					style="@style/ThemeIcon"
-                    android:src="@drawable/keystatus0"
-                    android:id="@+id/themesKey6" />
-                <TextView
                     style="@style/ThemeName"
-                    android:text="Thema1"
-                    android:id="@+id/themesTitle6"
-                    android:layout_toRightOf="@id/themesKey6"
-                     />
+                    android:layout_toRightOf="@id/themesKey5"
+                    android:text="Thema1" />
+
                 <ImageView
-					style="@style/ThemeIcon"
-                    android:src="@drawable/arrowright"
+                    android:id="@+id/themesButton5"
+                    style="@style/ThemeIcon"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/arrowright" />
+            </RelativeLayout>
+            <!-- THEMA 6 -->
+
+            <RelativeLayout
+                style="@style/RowLayout"
+                android:layout_marginBottom="5dp" >
+
+                <ImageView
+                    android:id="@+id/themesKey6"
+                    style="@style/ThemeIcon"
+                    android:src="@drawable/keystatus0" />
+
+                <TextView
+                    android:id="@+id/themesTitle6"
+                    style="@style/ThemeName"
+                    android:layout_toRightOf="@id/themesKey6"
+                    android:text="Thema1" />
+
+                <ImageView
                     android:id="@+id/themesButton6"
-                    android:layout_alignParentRight="true"  />
+                    style="@style/ThemeIcon"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/arrowright" />
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>
