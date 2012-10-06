@@ -14,7 +14,6 @@ public class LibraryInspectorSplash extends Activity {
 	int splashTime = 1000;
 	Context context;
 	SharedPreferences prefs;
-//TEST
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
