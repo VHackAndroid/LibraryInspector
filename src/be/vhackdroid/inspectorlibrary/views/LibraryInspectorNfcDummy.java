@@ -1,3 +1,7 @@
+/*
+ * Authors:
+ * 
+ */
 package be.vhackdroid.inspectorlibrary.views;
 
 import android.app.Activity;
