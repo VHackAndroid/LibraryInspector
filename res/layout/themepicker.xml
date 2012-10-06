@@ -40,7 +40,8 @@
 
             <RelativeLayout
                 style="@style/RowLayout"
-                android:layout_marginBottom="5dp" >
+                android:layout_marginBottom="5dp" 
+                android:background="@color/grey">
 
                 <ImageView
                     android:id="@+id/themesKey2"
@@ -51,7 +52,7 @@
                     android:id="@+id/themesTitle2"
                     style="@style/ThemeName"
                     android:layout_toRightOf="@id/themesKey2"
-                    android:text="Thema1" />
+                    android:text="De wereld" />
 
                 <ImageView
                     android:id="@+id/themesButton2"
@@ -63,7 +64,8 @@
 
             <RelativeLayout
                 style="@style/RowLayout"
-                android:layout_marginBottom="5dp" >
+                android:layout_marginBottom="5dp" 
+                android:background="@color/green">
 
                 <ImageView
                     android:id="@+id/themesKey3"
@@ -74,7 +76,7 @@
                     android:id="@+id/themesTitle3"
                     style="@style/ThemeName"
                     android:layout_toRightOf="@id/themesKey3"
-                    android:text="Thema1" />
+                    android:text="Dieren" />
 
                 <ImageView
                     android:id="@+id/themesButton3"
@@ -86,7 +88,8 @@
 
             <RelativeLayout
                 style="@style/RowLayout"
-                android:layout_marginBottom="5dp" >
+                android:layout_marginBottom="5dp" 
+                android:background="@color/yellow">
 
                 <ImageView
                     android:id="@+id/themesKey4"
@@ -97,7 +100,7 @@
                     android:id="@+id/themesTitle4"
                     style="@style/ThemeName"
                     android:layout_toRightOf="@id/themesKey4"
-                    android:text="Thema1" />
+                    android:text="Sport" />
 
                 <ImageView
                     android:id="@+id/themesButton4"
@@ -109,7 +112,8 @@
 
             <RelativeLayout
                 style="@style/RowLayout"
-                android:layout_marginBottom="5dp" >
+                android:layout_marginBottom="5dp" 
+                android:background="@color/orange">
 
                 <ImageView
                     android:id="@+id/themesKey5"
@@ -120,7 +124,7 @@
                     android:id="@+id/themesTitle5"
                     style="@style/ThemeName"
                     android:layout_toRightOf="@id/themesKey5"
-                    android:text="Thema1" />
+                    android:text="Taal" />
 
                 <ImageView
                     android:id="@+id/themesButton5"
@@ -132,7 +136,8 @@
 
             <RelativeLayout
                 style="@style/RowLayout"
-                android:layout_marginBottom="5dp" >
+                android:layout_marginBottom="5dp" 
+                android:background="@color/purple">
 
                 <ImageView
                     android:id="@+id/themesKey6"
@@ -143,7 +148,7 @@
                     android:id="@+id/themesTitle6"
                     style="@style/ThemeName"
                     android:layout_toRightOf="@id/themesKey6"
-                    android:text="Thema1" />
+                    android:text="Geloof" />
 
                 <ImageView
                     android:id="@+id/themesButton6"
