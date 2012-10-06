@@ -1,12 +1,11 @@
 package be.vhackdroid.inspectorlibrary.views;
 
-import android.app.Activity;
 import android.os.Bundle;
 
-public class LibraryInspectorThemeMuziek extends Activity {
+public class LibraryInspectorThemeMuziek extends LibraryInspectorNfcDummy {
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.thememuziek);
 	}

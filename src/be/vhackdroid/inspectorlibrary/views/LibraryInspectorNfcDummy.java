@@ -10,9 +10,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.TextView;
+import android.widget.Toast;
+import be.vhackdroid.inspectorlibrary.database.DBCreator;
 import be.vhackdroid.inspectorlibrary.managers.NfcManager;
+import be.vhackdroid.inspectorlibrary.models.Book;
 
 public class LibraryInspectorNfcDummy extends Activity {
 	// The NFC Adapter.
@@ -20,6 +21,10 @@ public class LibraryInspectorNfcDummy extends Activity {
 	private NfcManager nfcReader = null;
 	// Read mode.
 	boolean bReadMode = false;
+	//############################################
+	//VERY IMPORTANT!!!!!
+	private DBCreator dbh = LibraryInspectorSplash.dbh;
+	//############################################
 
 
 	@Override
@@ -37,16 +42,16 @@ public class LibraryInspectorNfcDummy extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				restart();
+				//restart();
 			}
 		});
 	}
 
-	private void restart(){
-		Intent i = new Intent();
-		i.setClass(LibraryInspectorNfcDummy.this, LibraryInspectorNfcDummy.class);
-		startActivity(i);
-	}
+//	private void restart(){
+//		Intent i = new Intent();
+//		i.setClass(LibraryInspectorNfcDummy.this, LibraryInspectorNfcDummy.class);
+//		startActivity(i);
+//	}
 	/*
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -79,24 +84,31 @@ public class LibraryInspectorNfcDummy extends Activity {
 	
 	//////////////////////////////////////////////////////////////////////////////////
 	public void processTag() {
-		TextView txtTest = (TextView) findViewById(R.id.textView_test);
-		CheckBox box = (CheckBox) findViewById(R.id.checkBox1);
-		String id = nfcReader.getTagId();
-		String titel = "Geen boek gevonden";
-		Boolean found = false;
-
-		String[] aId = {"0408B1193E2581","04085C193E2581","04E937193E2580","040AD3193E2581","0409AA193E2581"};
-		String[] aTitles = {"De woordspeler","In the winning mood","Triathlon totaal","Mister Michel","Sportvoeding"};
+		String barcode = nfcReader.getTagId();
+//
+//		String titel = "Geen boek gevonden";
+//
+//		String[] aId = {"0408B1193E2581","04085C193E2581","04E937193E2580","040AD3193E2581","0409AA193E2581"};
+//		String[] aTitles = {"De woordspeler","In the winning mood","Triathlon totaal","Mister Michel","Sportvoeding"};
+//		
+//		for(int i=0; i<aId.length; i++){
+//			if(id.equals(aId[i])){
+//				titel = aTitles[i];
+//				i = aId.length;
+//			}
+//		}
 		
-		for(int i=0; i<aId.length; i++){
-			if(id.equals(aId[i])){
-				titel = aTitles[i];
-				i = aId.length;
-				found=true;
-			}
+		Book book = dbh.getBookByBarcode(barcode);
+		
+		if(book.getTitel().equals("Inspector")){
+			popup("Proficiat, laat ons starten!");
+			startActivity(new Intent(this, LibraryInspectorIntro.class));
 		}
-		box.setChecked(found);
-		txtTest.setText(titel);
+		
+	}
+	
+	public void popup(String tekst){
+		Toast.makeText(LibraryInspectorNfcDummy.this, tekst, Toast.LENGTH_SHORT).show();
 	}
 
 }

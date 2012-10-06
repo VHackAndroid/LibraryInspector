@@ -47,6 +47,8 @@ public class LibraryInspectorSplash extends Activity {
 				} finally {
 					finish();
 					startActivity(new Intent(context, LibraryInspectorStart.class));
+					//Test only.
+					//startActivity(new Intent(context, LibraryInspectorNfcDummy.class));
 				}
 			}
 		};

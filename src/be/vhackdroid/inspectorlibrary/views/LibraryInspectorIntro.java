@@ -9,13 +9,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
-public class LibraryInspectorIntro extends Activity {
+public class LibraryInspectorIntro extends LibraryInspectorNfcDummy {
 
 	private int currentImage = -1;
 	private Bitmap[] images = new Bitmap[7];
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.introscreen);
 

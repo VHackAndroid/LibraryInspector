@@ -6,18 +6,18 @@ import android.widget.Toast;
 import be.vhackdroid.inspectorlibrary.database.DBCreator;
 import be.vhackdroid.inspectorlibrary.models.Book;
 
-public class LibraryInspectorStart extends Activity {
+public class LibraryInspectorStart extends LibraryInspectorNfcDummy {
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.start);
 
 	}
 
-	protected void onResume(){
+	public void onResume(){
 		super.onResume();
-		test();
+		//test();
 	}
 	
 	public void test(){

@@ -33,10 +33,10 @@ public class DBCreator extends SQLiteOpenHelper {
 
 	private void createBooks(SQLiteDatabase db) {
 		String[] titels = { "De woordspeler", "In the winning mood",
-				"Triathlon totaal", "Sportvoeding" };
+				"Triathlon totaal", "Sportvoeding", "Inspector" };
 		String[] barcodes = { "0408B1193E2581", "04085C193E2581",
-				"04E937193E2580", "0409AA193E2581" };
-		String[] clues = { "Gitaar", "Piano", "Drums", "Saxofoon" };
+				"04E937193E2580", "0409AA193E2581", "0409D3193E2581" };
+		String[] clues = { "Gitaar", "Piano", "Drums", "Saxofoon", "Gevonden" };
 
 		for (int i = 0; i < titels.length; i++) {
 			String sql = "INSERT INTO tblBooks(id, titel, barcode, hired, clue, themeId) VALUES("
