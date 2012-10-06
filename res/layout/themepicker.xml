@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/Full_Size.Body" >
-    <ImageView style="@style/Full_Width" android:src="@drawable/title"/> 
-
+    <ImageView
+        style="@style/Full_Width"
+        android:src="@drawable/title" />
+    <ScrollView style="@style/Full_Size.Body" >
+        <LinearLayout style="@style/Full_Size.Body" >
+            <RelativeLayout style="@style/RowLayout" >
+                <ImageView
+					style="@style/ThemeIcon"
+                    android:src="@drawable/keystatus0"
+                    android:id="@+id/themesKey1" />
+                <TextView
+                    style="@style/ThemeName"
+                    android:text="Thema1"
+                    android:id="@+id/themesTitle1"
+                    android:layout_toRightOf="@id/themesKey1"
+                     />
+                <ImageView
+					style="@style/ThemeIcon"
+                    android:src="@drawable/arrowright"
+                    android:id="@+id/themesButton1"
+                    android:layout_alignParentRight="true"  />"
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

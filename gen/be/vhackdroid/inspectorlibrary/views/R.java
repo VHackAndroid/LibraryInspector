@@ -26,12 +26,17 @@ public final class R {
         public static final int intro05=0x7f020008;
         public static final int intro06=0x7f020009;
         public static final int intro07=0x7f02000a;
-        public static final int start=0x7f02000b;
-        public static final int title=0x7f02000c;
+        public static final int keystatus0=0x7f02000b;
+        public static final int keystatus1=0x7f02000c;
+        public static final int start=0x7f02000d;
+        public static final int title=0x7f02000e;
     }
     public static final class id {
         public static final int introComic=0x7f070000;
         public static final int introComicArrow=0x7f070001;
+        public static final int themesButton1=0x7f070004;
+        public static final int themesKey1=0x7f070002;
+        public static final int themesTitle1=0x7f070003;
     }
     public static final class layout {
         public static final int introscreen=0x7f030000;
@@ -50,9 +55,14 @@ public final class R {
         public static final int Full_Size=0x7f060000;
         public static final int Full_Size_Body=0x7f060003;
         public static final int Full_Width=0x7f060001;
+        public static final int RowLayout=0x7f060005;
         /**  SPLASH 
          */
-        public static final int SplashTitle=0x7f060005;
+        public static final int SplashTitle=0x7f060006;
+        public static final int ThemeIcon=0x7f060008;
+        /**  THEMES 
+         */
+        public static final int ThemeName=0x7f060007;
         public static final int Wrap_Content=0x7f060004;
     }
 }

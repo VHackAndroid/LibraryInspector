@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- STYLE GENERAL -->
+	<!-- STYLE GENERAL -->
 	<style name="Full_Size">
 		<item name="android:layout_width">fill_parent</item>
 		<item name="android:layout_height">fill_parent</item>
@@ -21,13 +21,29 @@
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 	</style>
+	<style name="RowLayout" parent="@style/Full_Width">
+		<item name="android:orientation">horizontal</item>
+	</style>
 
 	<!-- SPLASH -->
 	<style name="SplashTitle" parent="@style/Full_Width">
-	    <item name="android:textColor">@color/black</item>
+		<item name="android:textColor">@color/black</item>
 		<item name="android:textStyle">bold</item>
 		<item name="android:textSize">21dip</item>
 		<item name="android:paddingTop">3dip</item>
 		<item name="android:gravity">center</item>
+	</style>
+
+	<!-- THEMES -->
+	<style name="ThemeName" parent="@style/Wrap_Content">
+		<item name="android:textColor">@color/black</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:textSize">35dip</item>
+		<item name="android:layout_centerVertical">true</item>
+		<item name="android:paddingLeft">10dp</item>
+	</style>
+	<style name="ThemeIcon">
+		<item name="android:layout_width">50dp</item>
+		<item name="android:layout_height">50dp</item>
 	</style>
 </resources>
