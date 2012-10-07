@@ -54,10 +54,10 @@
             
             <ImageView
                 android:id="@+id/ThemeMuziekSleutel"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
                 android:src="@drawable/keystatus0"
-                android:layout_marginLeft="100dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="80dp"
                 />
         </LinearLayout>
