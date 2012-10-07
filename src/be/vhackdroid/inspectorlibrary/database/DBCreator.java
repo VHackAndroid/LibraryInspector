@@ -93,7 +93,38 @@ public class DBCreator extends SQLiteOpenHelper {
 		String sql = "SELECT * FROM tblBooks WHERE barcode = '" + barcode
 				+ "';";
 		Cursor cursor = db.rawQuery(sql, null);
-
+		book = createBook(cursor);
+		return book;
+	}
+	
+	public boolean isBookElementOfTheme(int id, String theme) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		String sql_theme = "SELECT id FROM tblThemes WHERE naam = '" + theme + "';";
+		Cursor cursor = db.rawQuery(sql_theme, null);		
+		
+		if(cursor.moveToFirst()){
+			//Id exists.
+			int themeId = cursor.getInt(0);
+			
+			String sql_book = "SELECT * FROM tblBooks WHERE id = " + id + "AND themeId = " + themeId + ";";
+			Cursor cursor2 = db.rawQuery(sql_book, null);
+			
+			if(cursor2.moveToFirst()){
+				//Oké
+				cursor.close();
+				cursor2.close();
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}
+		
+	}
+	
+	public Book createBook(Cursor cursor){
+		Book book = null;
 		if (cursor.moveToFirst()) {
 			// Only one record if everything is normal.
 			book = new Book();
