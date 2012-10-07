@@ -10,11 +10,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
-public class LibraryInspectorEinde extends LibraryInspectorNfcDummy {
+public class LibraryInspectorEinde extends Activity {
 
 	private int currentImage = -1;
 	private Bitmap[] images = new Bitmap[4];
-
+	MediaPlayer mp;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -35,7 +35,7 @@ public class LibraryInspectorEinde extends LibraryInspectorNfcDummy {
 
 		setNextImage();
 
-		MediaPlayer mp = MediaPlayer.create(this, R.raw.tada);
+		 mp = MediaPlayer.create(this, R.raw.drumroll);
 		mp.start();
 	}
 
@@ -50,6 +50,13 @@ public class LibraryInspectorEinde extends LibraryInspectorNfcDummy {
 		}
 	}
 
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		mp.release();
+		mp=null;
+	}
+	
 	private class ArrowClicker implements OnClickListener {
 		@Override
 		public void onClick(View v) {
