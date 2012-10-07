@@ -9,6 +9,7 @@ public class Book{
 	protected boolean hired;
 	protected String clue;
 	protected int themeId;
+	protected String voorwerp;
 	
 	/**
 	 * @return the id
@@ -74,4 +75,13 @@ public class Book{
 	public void setThemeId(int themeId){
 		this.themeId = themeId;
 	}
+	
+	public void setVoorwerp(String voorwerp){
+		this.voorwerp = voorwerp;
+	}
+	
+	public String getVoorwerp(){
+		return voorwerp;
+	}
 }
+
