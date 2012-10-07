@@ -33,20 +33,21 @@ public class DBCreator extends SQLiteOpenHelper {
 
 	private void createBooks(SQLiteDatabase db) {
 		String[] titels = { "De woordspeler", "In the winning mood",
-				"Triathlon totaal", "Sportvoeding", "Inspector" };
+				"Triathlon totaal", "Sportvoeding", "Inspector","Paul McCartney's a leaf for piano", "Practical theory for guitar", "Kijk eens wat ik kan!", "Rock of Ages" };
 		String[] barcodes = { "0408B1193E2581", "04085C193E2581",
-				"04E937193E2580", "0409AA193E2581", "0409D3193E2581" };
-		String[] clues = { "Gitaar", "Piano", "Drums", "Saxofoon", "Gevonden" };
+				"04E937193E2580", "0409AA193E2581", "0409D3193E2581", "04E6EAE93E2580", "04FA8DE93E2580", "0409DEE93E2581", "0405BDE93E2581" };
+		String[] clues = { "Konijn", "Olifant", "Leeuw", "Tijger", "Gevonden","Gitaar", "Piano", "Drums", "Saxofoon"};
+		String[] voorwerpen = {"Sport","Sport","Sport","Sport","Vergrootglas","Gitaar", "Drums", "Saxofoon", "Piano"};
 
 		for (int i = 0; i < titels.length; i++) {
-			String sql = "INSERT INTO tblBooks(id, titel, barcode, hired, clue, themeId) VALUES("
-					+ i
+			String sql = "INSERT INTO tblBooks(id, titel, barcode, hired, clue, themeId, voorwerp) VALUES("
+					+ (i+1)
 					+ ", '"
 					+ titels[i]
 					+ "', '"
 					+ barcodes[i]
 					+ "',0,'"
-					+ clues[i] + "', " + i + ")";
+					+ clues[i] + "', " + i + ", '" + voorwerpen[i] + "')";
 			Log.d("sql",sql);
 			db.execSQL(sql);
 		}
@@ -57,7 +58,7 @@ public class DBCreator extends SQLiteOpenHelper {
 				"Geloof" };
 
 		for (int i = 0; i < themes.length; i++) {
-			db.execSQL("INSERT INTO tblThemes(id,naam) VALUES (" + i + ", '"
+			db.execSQL("INSERT INTO tblThemes(id,naam) VALUES (" + (i+1) + ", '"
 					+ themes[i] + "')");
 		}
 
@@ -67,10 +68,11 @@ public class DBCreator extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 		db.execSQL("CREATE TABLE IF NOT EXISTS tblBooks("
-				+ "id INT, titel VARCHAR, barcode VARCHAR, hired INT, clue VARCHAR, themeId INT)");
+				+ "id INT, titel VARCHAR, barcode VARCHAR, hired INT, clue VARCHAR, themeId INT, voorwerp VARCHAR)");
 
 		db.execSQL("CREATE TABLE IF NOT EXISTS tblThemes("
 				+ "id INT, naam VARCHAR)");
+		
 
 		createBooks(db);
 		createThemes(db);
@@ -93,7 +95,51 @@ public class DBCreator extends SQLiteOpenHelper {
 		String sql = "SELECT * FROM tblBooks WHERE barcode = '" + barcode
 				+ "';";
 		Cursor cursor = db.rawQuery(sql, null);
-
+		book = createBook(cursor);
+		return book;
+	}
+	
+	public String getVoorwerpFromBook(int id){
+		SQLiteDatabase db = this.getWritableDatabase();
+		String sql = "SELECT voorwerp FROM tblBooks WHERE id = " + id + ";";
+		Cursor cursor = db.rawQuery(sql, null);		
+		String voorwerp = "";
+		
+		if(cursor.moveToFirst()){
+			voorwerp = cursor.getString(0);
+		}
+		cursor.close();
+		return voorwerp;
+	}
+	
+	public boolean isBookElementOfTheme(int id, String theme) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		String sql_theme = "SELECT id FROM tblThemes WHERE naam = '" + theme + "';";
+		Cursor cursor = db.rawQuery(sql_theme, null);		
+		
+		if(cursor.moveToFirst()){
+			//Id exists.
+			int themeId = cursor.getInt(0);
+			
+			String sql_book = "SELECT * FROM tblBooks WHERE id = " + id + "AND themeId = " + themeId + ";";
+			Cursor cursor2 = db.rawQuery(sql_book, null);
+			
+			if(cursor2.moveToFirst()){
+				//Oké
+				cursor.close();
+				cursor2.close();
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}
+		
+	}
+	
+	public Book createBook(Cursor cursor){
+		Book book = null;
 		if (cursor.moveToFirst()) {
 			// Only one record if everything is normal.
 			book = new Book();
@@ -110,6 +156,7 @@ public class DBCreator extends SQLiteOpenHelper {
 
 			book.setClue(cursor.getString(4));
 			book.setThemeId(cursor.getInt(5));
+			book.setVoorwerp(cursor.getString(6));
 		}
 		cursor.close();
 		return book;
