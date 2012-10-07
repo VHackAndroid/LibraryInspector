@@ -3,7 +3,7 @@
 	style="@style/Full_Size.Body">
 
 	<ImageView style="@style/Full_Width" android:src="@drawable/title" />
-	<ImageView style="@style/Wrap_Content" android:src="@drawable/androidinspector"   />
+	<ImageView style="@style/Wrap_Content" android:src="@drawable/android"   />
 	<TextView style="@style/SplashTitle" android:text="Laden..." android:layout_weight="1" />
 
 </LinearLayout>
