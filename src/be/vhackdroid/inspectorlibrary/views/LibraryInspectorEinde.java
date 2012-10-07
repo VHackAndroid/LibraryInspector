@@ -1,32 +1,25 @@
 package be.vhackdroid.inspectorlibrary.views;
 
-//button[i].setOnClickListener(new OnClickListener() {
-//    public void onClick(View view) {       
-//               mp = MediaPlayer.create(Test.this, R.raw.mysound);   
-//               mp.start();
-//           }
-//       });
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
 public class LibraryInspectorEinde extends LibraryInspectorNfcDummy {
-	
+
 	private int currentImage = -1;
 	private Bitmap[] images = new Bitmap[4];
-	
-	
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-setContentView(R.layout.einde);
-		
+		setContentView(R.layout.einde);
+
 		// Init Images
 		images[0] = BitmapFactory.decodeResource(getResources(),
 				R.drawable.einde01);
@@ -41,6 +34,9 @@ setContentView(R.layout.einde);
 		arrow.setOnClickListener(new ArrowClicker());
 
 		setNextImage();
+
+		MediaPlayer mp = MediaPlayer.create(this, R.raw.tada);
+		mp.start();
 	}
 
 	private void setNextImage() {
