@@ -24,6 +24,12 @@ public class SettingsManager {
 		editor.putBoolean("StatusKey4", false);
 		editor.putBoolean("StatusKey5", false);
 		editor.putBoolean("StatusKey6", false);
+		
+		SettingsMuziekManager.setStatusDrums(pref, false);
+		SettingsMuziekManager.setStatusPiano(pref, false);
+		SettingsMuziekManager.setStatusSax(pref, false);
+		SettingsMuziekManager.setStatusGitaar(pref, false);
+		
 		editor.commit();
 	}
 	

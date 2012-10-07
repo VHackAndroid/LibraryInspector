@@ -3,5 +3,6 @@
 
     <string name="hello">Hello World, LibraryInspectorSplash!</string>
     <string name="app_name">LibraryInspector</string>
+    <string name="btnFinish">Complete the quest</string>
 
 </resources>

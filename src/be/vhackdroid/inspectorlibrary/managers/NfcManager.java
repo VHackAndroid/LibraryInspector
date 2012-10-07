@@ -164,7 +164,7 @@ public class NfcManager {
 					msgs = new NdefMessage[] { msg };
 				}
 				NdefMessage msg = null;
-				if(rawMsgs != null){
+				if(rawMsgs != null && rawMsgs.length>0){
 					Log.d("RAW_MSGS LENGTH",Integer.toString(rawMsgs.length));
 				msg = (NdefMessage) rawMsgs[0];
 				}

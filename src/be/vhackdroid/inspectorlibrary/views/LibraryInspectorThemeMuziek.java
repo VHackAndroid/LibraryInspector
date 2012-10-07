@@ -106,6 +106,7 @@ public class LibraryInspectorThemeMuziek extends LibraryInspectorNfcDummy {
 				SettingsMuziekManager.getStatusPiano(prefs) && SettingsMuziekManager.getStatusSax(prefs)){
 			Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.keystatus1);
 			imgSleutel.setImageBitmap(bmp);
+			SettingsManager.setStatusKey(prefs, 1,true);
 		}else{
 			Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.keystatus0);
 			imgSleutel.setImageBitmap(bmp);

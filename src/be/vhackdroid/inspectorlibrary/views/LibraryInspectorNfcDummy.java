@@ -49,8 +49,7 @@ public class LibraryInspectorNfcDummy extends Activity {
 			}
 		});
 	}
-
-
+	
 	public void onNewIntent(Intent intent) {
 		if (nfcReader.isReadMode() == true) {
 			setIntent(intent);
@@ -108,6 +107,7 @@ public class LibraryInspectorNfcDummy extends Activity {
 			i.putExtra("bookid", book.getId());
 		} else{
 			huidigeId = -1;
+			popup("Probeer eens een ander boek");
 		}
 	}
 	

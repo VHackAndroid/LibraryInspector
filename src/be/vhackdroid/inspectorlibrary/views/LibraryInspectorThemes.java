@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 
 public class LibraryInspectorThemes extends LibraryInspectorNfcDummy {
@@ -95,10 +96,34 @@ public class LibraryInspectorThemes extends LibraryInspectorNfcDummy {
 		}else{
 			sleutelMuziek.setImageBitmap(bmpStatus0);
 		}
+		//andere categoriëen
 		
 		if (true){
 			sleutelGeloof.setImageBitmap(bmpStatus1);
+			sleutelDieren.setImageBitmap(bmpStatus1);
+			sleutelSport.setImageBitmap(bmpStatus1);
+			sleutelTaal.setImageBitmap(bmpStatus1);
+			sleutelWereld.setImageBitmap(bmpStatus1);
+			
+			SettingsManager.setStatusKey(prefs, 2,true);
+			SettingsManager.setStatusKey(prefs, 3,true);
+			SettingsManager.setStatusKey(prefs, 4,true);
+			SettingsManager.setStatusKey(prefs, 5,true);
+			SettingsManager.setStatusKey(prefs, 6,true);
 		}
 		//TODO: OTHER KEYS
+		
+
+		if(SettingsManager.getStatusKey(prefs, 1) && (SettingsManager.getStatusKey(prefs, 2)) && (SettingsManager.getStatusKey(prefs, 3)) &&
+			(SettingsManager.getStatusKey(prefs, 4)) && (SettingsManager.getStatusKey(prefs, 5))){
+			popup("Alles is opgelost");
+			View btn = findViewById(R.id.btnFinish);
+			btn.setVisibility(View.VISIBLE);
+		}
+	}
+	
+	public void onResume(){
+		super.onResume();
+		checkKeys();
 	}
 }

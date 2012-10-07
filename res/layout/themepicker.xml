@@ -6,7 +6,8 @@
         style="@style/Full_Width"
         android:src="@drawable/title" />
 
-    <ScrollView style="@style/Full_Size.Body" >
+    <ScrollView
+        style="@style/Full_Size.Body">
 
         <LinearLayout style="@style/Full_Size.Body" >
 
@@ -156,7 +157,15 @@
                     android:layout_alignParentRight="true"
                     android:src="@drawable/arrowright" />
             </RelativeLayout>
+            <Button
+		       android:id="@+id/btnFinish"
+		       android:layout_width="fill_parent"
+		       android:layout_height="wrap_content"
+		       android:layout_alignParentBottom="true"
+		       android:layout_alignParentRight="true"
+		       android:visibility="gone"
+		       android:text="@string/btnFinish" />
         </LinearLayout>
     </ScrollView>
-
+	
 </LinearLayout>
