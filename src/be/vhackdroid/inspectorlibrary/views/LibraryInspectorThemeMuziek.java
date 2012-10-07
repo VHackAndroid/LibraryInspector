@@ -16,6 +16,7 @@ public class LibraryInspectorThemeMuziek extends LibraryInspectorNfcDummy {
 
 	private Context context;
 	private SharedPreferences prefs;
+	private static String THEME = "Muziek";
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,26 @@ public class LibraryInspectorThemeMuziek extends LibraryInspectorNfcDummy {
 		   startActivity(new Intent(context, LibraryInspectorThemeMuziekHelp.class));
 		   SettingsMuziekManager.setFirstMuziekBoot(prefs, false);
 	   }		
+	}
+	
+	@Override
+	public void processTag(){
+		super.processTag();
+		   if(dbh.isBookElementOfTheme(huidigeId, THEME)){
+			   popup("Prima, doe zo verder!");
+			   String voorwerp = dbh.getVoorwerpFromBook(huidigeId);
+			   if(voorwerp.equals("Gitaar")){
+				   SettingsMuziekManager.setStatusGitaar(prefs, true);
+			   } else if(voorwerp.equals("Drums")){
+				   SettingsMuziekManager.setStatusDrums(prefs, true);
+			   } else if(voorwerp.equals("Saxofoon")){
+				   SettingsMuziekManager.setStatusSax(prefs, true);
+			   } else if(voorwerp.equals("Piano")){
+				   SettingsMuziekManager.setStatusPiano(prefs, true);
+			   }
+		   }
+		   
+		   checkStatusItems();
 	}
 	
 	private void checkStatusItems(){

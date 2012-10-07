@@ -33,12 +33,12 @@ public class DBCreator extends SQLiteOpenHelper {
 
 	private void createBooks(SQLiteDatabase db) {
 		String[] titels = { "De woordspeler", "In the winning mood",
-				"Triathlon totaal", "Sportvoeding", "Inspector","Paul McCartney's a leaf for piano", "Practical theory for guitar", "Kijk eens wat ik kan!", "Rock of Ages" };
+				"Triathlon totaal", "Sportvoeding", "Inspector","Paul McCartney: a leaf for piano", "Practical theory for guitar", "Kijk eens wat ik kan!", "Rock of Ages" };
 		String[] barcodes = { "0408B1193E2581", "04085C193E2581",
-				"04E937193E2580", "0409AA193E2581", "0409D3193E2581", "04E6EAE93E2580", "04FA8DE93E2580", "0409DEE93E2581", "0405BDE93E2581" };
+				"04E937193E2580", "0409AA193E2581", "0409D3193E2581", "04E6EA193E2580", "04FA8D193E2580", "0409DE193E2581", "0405BD193E2581" };
 		String[] clues = { "Konijn", "Olifant", "Leeuw", "Tijger", "Gevonden","Gitaar", "Piano", "Drums", "Saxofoon"};
-		String[] voorwerpen = {"Sport","Sport","Sport","Sport","Vergrootglas","Gitaar", "Drums", "Saxofoon", "Piano"};
-
+		String[] voorwerpen = {"Sport","Sport","Sport","Sport","Vergrootglas","Gitaar", "Piano", "Drums", "Saxofoon"};
+		int[] themeIds = {4,4,4,4,7,1,1,1,1};
 		for (int i = 0; i < titels.length; i++) {
 			String sql = "INSERT INTO tblBooks(id, titel, barcode, hired, clue, themeId, voorwerp) VALUES("
 					+ (i+1)
@@ -47,7 +47,7 @@ public class DBCreator extends SQLiteOpenHelper {
 					+ "', '"
 					+ barcodes[i]
 					+ "',0,'"
-					+ clues[i] + "', " + i + ", '" + voorwerpen[i] + "')";
+					+ clues[i] + "', " + themeIds[i] + ", '" + voorwerpen[i] + "')";
 			Log.d("sql",sql);
 			db.execSQL(sql);
 		}
@@ -55,7 +55,7 @@ public class DBCreator extends SQLiteOpenHelper {
 
 	private void createThemes(SQLiteDatabase db) {
 		String[] themes = { "Muziek", "De wereld", "Dieren", "Sport", "Taal",
-				"Geloof" };
+				"Geloof","Special" };
 
 		for (int i = 0; i < themes.length; i++) {
 			db.execSQL("INSERT INTO tblThemes(id,naam) VALUES (" + (i+1) + ", '"
@@ -121,7 +121,7 @@ public class DBCreator extends SQLiteOpenHelper {
 			//Id exists.
 			int themeId = cursor.getInt(0);
 			
-			String sql_book = "SELECT * FROM tblBooks WHERE id = " + id + "AND themeId = " + themeId + ";";
+			String sql_book = "SELECT * FROM tblBooks WHERE id = " + id + " AND themeId = " + themeId + ";";
 			Cursor cursor2 = db.rawQuery(sql_book, null);
 			
 			if(cursor2.moveToFirst()){

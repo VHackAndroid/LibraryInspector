@@ -24,11 +24,12 @@ public class LibraryInspectorNfcDummy extends Activity {
 	boolean bReadMode = false;
 	//############################################
 	//VERY IMPORTANT!!!!!
-	private DBCreator dbh = LibraryInspectorSplash.dbh;
+	protected DBCreator dbh = LibraryInspectorSplash.dbh;
 	//############################################
 
 	protected Book book;
 	protected Theme theme;
+	protected int huidigeId;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -75,36 +76,39 @@ public class LibraryInspectorNfcDummy extends Activity {
 	//////////////////////////////////////////////////////////////////////////////////
 	public void processTag() {
 		String barcode = nfcReader.getTagId();
-		
 		book = dbh.getBookByBarcode(barcode);
-		theme = (Theme)dbh.getTheme(book.getThemeId());
-		
-		Intent i = null;
-		
-		if(book.getTitel().equals("Inspector")){
-			popup("Proficiat, laat ons starten!");
-			i = new Intent(this, LibraryInspectorIntro.class);
-			startActivity(i);
-		}
-		
-		switch(theme.getId()){
-			case 0:
-				i = new Intent(this, LibraryInspectorThemeMuziek.class);
-				break;
-			case 1:
-				i = new Intent(this, LibraryInspectorThemeWereld.class);
-				break;
-			case 2:
-				i = new Intent(this, LibraryInspectorThemeDieren.class);
-				break;
-			case 3:
-				i = new Intent(this, LibraryInspectorThemeSport.class);
-				break;
-			case 4:
-				i = new Intent(this, LibraryInspectorThemeGeloof.class);
-				break;
+		if(book != null){
+			theme = (Theme)dbh.getTheme(book.getThemeId());
+			huidigeId = book.getId();
+			Intent i = null;
+			
+			if(book.getTitel().equals("Inspector")){
+				popup("Proficiat, laat ons starten!");
+				i = new Intent(this, LibraryInspectorIntro.class);
+				startActivity(i);
 			}
-		i.putExtra("bookid", book.getId());
+			
+			switch(theme.getId()){
+				case 0:
+					i = new Intent(this, LibraryInspectorThemeMuziek.class);
+					break;
+				case 1:
+					i = new Intent(this, LibraryInspectorThemeWereld.class);
+					break;
+				case 2:
+					i = new Intent(this, LibraryInspectorThemeDieren.class);
+					break;
+				case 3:
+					i = new Intent(this, LibraryInspectorThemeSport.class);
+					break;
+				case 4:
+					i = new Intent(this, LibraryInspectorThemeGeloof.class);
+					break;
+				}
+			i.putExtra("bookid", book.getId());
+		} else{
+			huidigeId = -1;
+		}
 	}
 	
 	public void popup(String tekst){
