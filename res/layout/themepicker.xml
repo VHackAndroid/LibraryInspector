@@ -18,14 +18,14 @@
                 android:background="@color/blue" >
 
                 <ImageView
-                    android:id="@+id/themesKey1"
+                    android:id="@+id/themesKeyMuziek"
                     style="@style/ThemeIcon"
                     android:src="@drawable/keystatus0" />
 
                 <TextView
                     android:id="@+id/themesTitle1"
                     style="@style/ThemeName"
-                    android:layout_toRightOf="@id/themesKey1"
+                    android:layout_toRightOf="@id/themesKeyMuziek"
                     android:text="Muziek" />
 
                 <ImageView
@@ -44,14 +44,14 @@
                 android:background="@color/grey">
 
                 <ImageView
-                    android:id="@+id/themesKey2"
+                    android:id="@+id/themesKeyWereld"
                     style="@style/ThemeIcon"
                     android:src="@drawable/keystatus0" />
 
                 <TextView
                     android:id="@+id/themesTitle2"
                     style="@style/ThemeName"
-                    android:layout_toRightOf="@id/themesKey2"
+                    android:layout_toRightOf="@id/themesKeyWereld"
                     android:text="De wereld" />
 
                 <ImageView
@@ -68,14 +68,14 @@
                 android:background="@color/green">
 
                 <ImageView
-                    android:id="@+id/themesKey3"
+                    android:id="@+id/themesKeyDieren"
                     style="@style/ThemeIcon"
                     android:src="@drawable/keystatus0" />
 
                 <TextView
                     android:id="@+id/themesTitle3"
                     style="@style/ThemeName"
-                    android:layout_toRightOf="@id/themesKey3"
+                    android:layout_toRightOf="@id/themesKeyDieren"
                     android:text="Dieren" />
 
                 <ImageView
@@ -92,14 +92,14 @@
                 android:background="@color/yellow">
 
                 <ImageView
-                    android:id="@+id/themesKey4"
+                    android:id="@+id/themesKeySport"
                     style="@style/ThemeIcon"
                     android:src="@drawable/keystatus0" />
 
                 <TextView
                     android:id="@+id/themesTitle4"
                     style="@style/ThemeName"
-                    android:layout_toRightOf="@id/themesKey4"
+                    android:layout_toRightOf="@id/themesKeySport"
                     android:text="Sport" />
 
                 <ImageView
@@ -116,14 +116,14 @@
                 android:background="@color/orange">
 
                 <ImageView
-                    android:id="@+id/themesKey5"
+                    android:id="@+id/themesKeyTaal"
                     style="@style/ThemeIcon"
                     android:src="@drawable/keystatus0" />
 
                 <TextView
                     android:id="@+id/themesTitle5"
                     style="@style/ThemeName"
-                    android:layout_toRightOf="@id/themesKey5"
+                    android:layout_toRightOf="@id/themesKeyTaal"
                     android:text="Taal" />
 
                 <ImageView
@@ -140,14 +140,14 @@
                 android:background="@color/purple">
 
                 <ImageView
-                    android:id="@+id/themesKey6"
+                    android:id="@+id/themesKeyGeloof"
                     style="@style/ThemeIcon"
                     android:src="@drawable/keystatus0" />
 
                 <TextView
                     android:id="@+id/themesTitle6"
                     style="@style/ThemeName"
-                    android:layout_toRightOf="@id/themesKey6"
+                    android:layout_toRightOf="@id/themesKeyGeloof"
                     android:text="Geloof" />
 
                 <ImageView
