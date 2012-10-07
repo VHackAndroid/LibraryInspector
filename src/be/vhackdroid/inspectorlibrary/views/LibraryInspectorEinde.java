@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -13,11 +14,11 @@ public class LibraryInspectorEinde extends LibraryInspectorNfcDummy {
 	private int currentImage = -1;
 	private Bitmap[] images = new Bitmap[4];
 	
+	
 	@Override
-	public void onChildTitleChanged(Activity childActivity,
-			CharSequence title) {
-		super.onChildTitleChanged(childActivity, title);
-		setContentView(R.layout.einde);
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+setContentView(R.layout.einde);
 		
 		// Init Images
 		images[0] = BitmapFactory.decodeResource(getResources(),
@@ -34,7 +35,7 @@ public class LibraryInspectorEinde extends LibraryInspectorNfcDummy {
 
 		setNextImage();
 	}
-	
+
 	private void setNextImage() {
 		currentImage++;
 		if (currentImage < images.length) {

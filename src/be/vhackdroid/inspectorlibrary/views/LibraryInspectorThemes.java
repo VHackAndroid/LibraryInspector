@@ -117,10 +117,19 @@ public class LibraryInspectorThemes extends LibraryInspectorNfcDummy {
 		if(SettingsManager.getStatusKey(prefs, 1) && (SettingsManager.getStatusKey(prefs, 2)) && (SettingsManager.getStatusKey(prefs, 3)) &&
 			(SettingsManager.getStatusKey(prefs, 4)) && (SettingsManager.getStatusKey(prefs, 5))){
 			popup("Alles is opgelost");
-			View btn = findViewById(R.id.btnFinish);
+			Button btn = (Button) findViewById(R.id.btnFinish);
 			btn.setVisibility(View.VISIBLE);
+			btn.setOnClickListener(new OnClickListener() {				
+				@Override
+				public void onClick(View v) {
+					finish();
+					startActivity(new Intent(context, LibraryInspectorEinde.class));
+				}
+			});
 		}
 	}
+	
+	
 	
 	public void onResume(){
 		super.onResume();

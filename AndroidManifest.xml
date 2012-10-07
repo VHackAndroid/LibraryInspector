@@ -58,6 +58,9 @@
             android:name=".LibraryInspectorThemeTaal"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
+            android:name=".LibraryInspectorEinde"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
             android:name=".LibraryInspectorThemeTaalHelp"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
