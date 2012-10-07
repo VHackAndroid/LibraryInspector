@@ -14,6 +14,7 @@ import android.widget.Toast;
 import be.vhackdroid.inspectorlibrary.database.DBCreator;
 import be.vhackdroid.inspectorlibrary.managers.NfcManager;
 import be.vhackdroid.inspectorlibrary.models.Book;
+import be.vhackdroid.inspectorlibrary.models.Theme;
 
 public class LibraryInspectorNfcDummy extends Activity {
 	// The NFC Adapter.
@@ -85,26 +86,33 @@ public class LibraryInspectorNfcDummy extends Activity {
 	//////////////////////////////////////////////////////////////////////////////////
 	public void processTag() {
 		String barcode = nfcReader.getTagId();
-//
-//		String titel = "Geen boek gevonden";
-//
-//		String[] aId = {"0408B1193E2581","04085C193E2581","04E937193E2580","040AD3193E2581","0409AA193E2581"};
-//		String[] aTitles = {"De woordspeler","In the winning mood","Triathlon totaal","Mister Michel","Sportvoeding"};
-//		
-//		for(int i=0; i<aId.length; i++){
-//			if(id.equals(aId[i])){
-//				titel = aTitles[i];
-//				i = aId.length;
-//			}
-//		}
 		
 		Book book = dbh.getBookByBarcode(barcode);
-		
+		Theme theme = (Theme)dbh.getTheme(book.getThemeId());
+		Intent i = null;
 		if(book.getTitel().equals("Inspector")){
 			popup("Proficiat, laat ons starten!");
-			startActivity(new Intent(this, LibraryInspectorIntro.class));
+			i = new Intent(this, LibraryInspectorIntro.class);
+		} else {
+			switch(theme.getId()){
+			case 0:
+				i = new Intent(this, LibraryInspectorThemeMuziek.class);
+				break;
+			case 1:
+				i = new Intent(this, LibraryInspectorThemeWereld.class);
+				break;
+			case 2:
+				i = new Intent(this, LibraryInspectorThemeDieren.class);
+				break;
+			case 3:
+				i = new Intent(this, LibraryInspectorThemeSport.class);
+				break;
+			case 4:
+				i = new Intent(this, LibraryInspectorThemeGeloof.class);
+				break;
+			}
 		}
-		
+		startActivity(i);
 	}
 	
 	public void popup(String tekst){
