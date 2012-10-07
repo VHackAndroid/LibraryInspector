@@ -1,5 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/Full_Size.Body" >
-    <ImageView style="@style/Full_Width" android:src="@drawable/title"/> 
+    <ScrollView style="@style/Full_Size" >
+        <LinearLayout
+            style="@style/Full_Size"
+            android:orientation="vertical" >
+            <ImageView
+                style="@style/Full_Width"
+                android:src="@drawable/title" />
+            <RelativeLayout style="@style/Full_Width">
+            	<TextView style="@style/ThemePageTitle" android:text="Sport" />
+            	<ImageView
+            	    android:id="@+id/themesSportHelpKnop"
+            	    android:layout_width="50dp"
+            	    android:layout_height="50dp"
+            	    android:src="@drawable/help" 
+            	    android:layout_alignParentRight="true"/>"
+            </RelativeLayout>
+            
+            <RelativeLayout style="@style/Full_Width" android:layout_marginTop="20dp">
+                <ImageView
+            	    android:id="@+id/themesSportVoetbal"
+            	    android:layout_width="50dp"
+            	    android:layout_height="50dp"
+            	    android:src="@drawable/voetbalstatus1" 
+            	    android:layout_alignParentLeft="true"
+            	    android:layout_marginLeft="60dp"/>
+                <ImageView
+            	    android:id="@+id/themesSportVolleybal"
+            	    android:layout_width="50dp"
+            	    android:layout_height="50dp"
+            	    android:src="@drawable/volleybalstatus1" 
+            	    android:layout_alignParentRight="true"
+            	    android:layout_marginRight="60dp"/>
+            </RelativeLayout>
+            
+            <RelativeLayout style="@style/Full_Width" android:layout_marginTop="20dp">
+                <ImageView
+            	    android:id="@+id/themesSportBasketbal"
+            	    android:layout_width="50dp"
+            	    android:layout_height="50dp"
+            	    android:src="@drawable/basketbalstatus1" 
+            	    android:layout_alignParentLeft="true"
+            	    android:layout_marginLeft="60dp"/>
+                <ImageView
+            	    android:id="@+id/themesSportTennisbal"
+            	    android:layout_width="50dp"
+            	    android:layout_height="50dp"
+            	    android:src="@drawable/tennisbalstatus1" 
+            	    android:layout_alignParentRight="true"
+            	    android:layout_marginRight="60dp"/>
+            </RelativeLayout>
+            
+            <ImageView
+                android:id="@+id/ThemeSportSleutel"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:src="@drawable/keystatus1"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="80dp"
+                />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

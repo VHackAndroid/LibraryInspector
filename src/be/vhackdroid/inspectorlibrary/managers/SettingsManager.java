@@ -36,4 +36,14 @@ public class SettingsManager {
 		editor.putBoolean("StatusKey" + keyNumber, status);
 		editor.commit();
 	}
+	
+	public static Boolean isFirstBootSport(SharedPreferences pref){
+		return pref.getBoolean("FirstBootSport", true);	
+	}
+	
+	public static void setFirstBootSport(SharedPreferences pref, boolean status){
+		SharedPreferences.Editor editor = pref.edit();
+		editor.putBoolean("FirstBootSport", status);
+		editor.commit();
+	}
 }
