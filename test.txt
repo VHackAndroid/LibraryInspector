@@ -1,0 +1,486 @@
+diff --git a/AndroidManifest.xml b/AndroidManifest.xml
+index 919b5d7..87b5d77 100644
+--- a/AndroidManifest.xml
++++ b/AndroidManifest.xml
+@@ -27,15 +27,21 @@
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+         </activity>
++        
+         <activity
++            android:exported="false"
+             android:name=".LibraryInspectorNfcDummy"
+             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+             <intent-filter>
+                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+-
+                 <category android:name="android.intent.category.DEFAULT" />
+ 
+-                <data android:mimeType="application/be.vhackandroid.inspectorlibrary.views" />
++                <data
++                    android:scheme="http"
++                    android:host="ttag.be"
++                    android:path="/m"
++                     />
++                <data android:mimeType="text/plain" />
+             </intent-filter>
+         </activity>
+         <activity
+diff --git a/src/be/vhackdroid/inspectorlibrary/database/DBCreator.java b/src/be/vhackdroid/inspectorlibrary/database/DBCreator.java
+index 2c41e45..79bf98d 100644
+--- a/src/be/vhackdroid/inspectorlibrary/database/DBCreator.java
++++ b/src/be/vhackdroid/inspectorlibrary/database/DBCreator.java
+@@ -33,10 +33,10 @@ public class DBCreator extends SQLiteOpenHelper {
+ 
+ 	private void createBooks(SQLiteDatabase db) {
+ 		String[] titels = { "De woordspeler", "In the winning mood",
+-				"Triathlon totaal", "Sportvoeding" };
++				"Triathlon totaal", "Sportvoeding", "Inspector" };
+ 		String[] barcodes = { "0408B1193E2581", "04085C193E2581",
+-				"04E937193E2580", "0409AA193E2581" };
+-		String[] clues = { "Gitaar", "Piano", "Drums", "Saxofoon" };
++				"04E937193E2580", "0409AA193E2581", "0409D3193E2581" };
++		String[] clues = { "Gitaar", "Piano", "Drums", "Saxofoon", "Gevonden" };
+ 
+ 		for (int i = 0; i < titels.length; i++) {
+ 			String sql = "INSERT INTO tblBooks(id, titel, barcode, hired, clue, themeId) VALUES("
+diff --git a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorIntro.java b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorIntro.java
+index 8d717a1..368149f 100644
+--- a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorIntro.java
++++ b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorIntro.java
+@@ -9,13 +9,13 @@ import android.view.View;
+ import android.view.View.OnClickListener;
+ import android.widget.ImageView;
+ 
+-public class LibraryInspectorIntro extends Activity {
++public class LibraryInspectorIntro extends LibraryInspectorNfcDummy {
+ 
+ 	private int currentImage = -1;
+ 	private Bitmap[] images = new Bitmap[7];
+ 
+ 	@Override
+-	protected void onCreate(Bundle savedInstanceState) {
++	public void onCreate(Bundle savedInstanceState) {
+ 		super.onCreate(savedInstanceState);
+ 		setContentView(R.layout.introscreen);
+ 
+diff --git a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorNfcDummy.java b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorNfcDummy.java
+index c9a447f..c302337 100644
+--- a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorNfcDummy.java
++++ b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorNfcDummy.java
+@@ -10,9 +10,10 @@ import android.os.Bundle;
+ import android.view.View;
+ import android.view.View.OnClickListener;
+ import android.widget.Button;
+-import android.widget.CheckBox;
+-import android.widget.TextView;
++import android.widget.Toast;
++import be.vhackdroid.inspectorlibrary.database.DBCreator;
+ import be.vhackdroid.inspectorlibrary.managers.NfcManager;
++import be.vhackdroid.inspectorlibrary.models.Book;
+ 
+ public class LibraryInspectorNfcDummy extends Activity {
+ 	// The NFC Adapter.
+@@ -20,6 +21,10 @@ public class LibraryInspectorNfcDummy extends Activity {
+ 	private NfcManager nfcReader = null;
+ 	// Read mode.
+ 	boolean bReadMode = false;
++	//############################################
++	//VERY IMPORTANT!!!!!
++	private DBCreator dbh = LibraryInspectorSplash.dbh;
++	//############################################
+ 
+ 
+ 	@Override
+@@ -37,16 +42,16 @@ public class LibraryInspectorNfcDummy extends Activity {
+ 			@Override
+ 			public void onClick(View v) {
+ 				// TODO Auto-generated method stub
+-				restart();
++				//restart();
+ 			}
+ 		});
+ 	}
+ 
+-	private void restart(){
+-		Intent i = new Intent();
+-		i.setClass(LibraryInspectorNfcDummy.this, LibraryInspectorNfcDummy.class);
+-		startActivity(i);
+-	}
++//	private void restart(){
++//		Intent i = new Intent();
++//		i.setClass(LibraryInspectorNfcDummy.this, LibraryInspectorNfcDummy.class);
++//		startActivity(i);
++//	}
+ 	/*
+ 	@Override
+ 	public boolean onCreateOptionsMenu(Menu menu) {
+@@ -79,24 +84,31 @@ public class LibraryInspectorNfcDummy extends Activity {
+ 	
+ 	//////////////////////////////////////////////////////////////////////////////////
+ 	public void processTag() {
+-		TextView txtTest = (TextView) findViewById(R.id.textView_test);
+-		CheckBox box = (CheckBox) findViewById(R.id.checkBox1);
+-		String id = nfcReader.getTagId();
+-		String titel = "Geen boek gevonden";
+-		Boolean found = false;
+-
+-		String[] aId = {"0408B1193E2581","04085C193E2581","04E937193E2580","040AD3193E2581","0409AA193E2581"};
+-		String[] aTitles = {"De woordspeler","In the winning mood","Triathlon totaal","Mister Michel","Sportvoeding"};
++		String barcode = nfcReader.getTagId();
++//
++//		String titel = "Geen boek gevonden";
++//
++//		String[] aId = {"0408B1193E2581","04085C193E2581","04E937193E2580","040AD3193E2581","0409AA193E2581"};
++//		String[] aTitles = {"De woordspeler","In the winning mood","Triathlon totaal","Mister Michel","Sportvoeding"};
++//		
++//		for(int i=0; i<aId.length; i++){
++//			if(id.equals(aId[i])){
++//				titel = aTitles[i];
++//				i = aId.length;
++//			}
++//		}
+ 		
+-		for(int i=0; i<aId.length; i++){
+-			if(id.equals(aId[i])){
+-				titel = aTitles[i];
+-				i = aId.length;
+-				found=true;
+-			}
++		Book book = dbh.getBookByBarcode(barcode);
++		
++		if(book.getTitel().equals("Inspector")){
++			popup("Proficiat, laat ons starten!");
++			startActivity(new Intent(this, LibraryInspectorIntro.class));
+ 		}
+-		box.setChecked(found);
+-		txtTest.setText(titel);
++		
++	}
++	
++	public void popup(String tekst){
++		Toast.makeText(LibraryInspectorNfcDummy.this, tekst, Toast.LENGTH_SHORT).show();
+ 	}
+ 
+ }
+diff --git a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorSplash.java b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorSplash.java
+index 5e569c5..1b401ad 100644
+--- a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorSplash.java
++++ b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorSplash.java
+@@ -47,6 +47,8 @@ public class LibraryInspectorSplash extends Activity {
+ 				} finally {
+ 					finish();
+ 					startActivity(new Intent(context, LibraryInspectorStart.class));
++					//Test only.
++					//startActivity(new Intent(context, LibraryInspectorNfcDummy.class));
+ 				}
+ 			}
+ 		};
+diff --git a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorStart.java b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorStart.java
+index 6ee3311..3fc129f 100644
+--- a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorStart.java
++++ b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorStart.java
+@@ -6,18 +6,18 @@ import android.widget.Toast;
+ import be.vhackdroid.inspectorlibrary.database.DBCreator;
+ import be.vhackdroid.inspectorlibrary.models.Book;
+ 
+-public class LibraryInspectorStart extends Activity {
++public class LibraryInspectorStart extends LibraryInspectorNfcDummy {
+ 
+ 	@Override
+-	protected void onCreate(Bundle savedInstanceState) {
++	public void onCreate(Bundle savedInstanceState) {
+ 		super.onCreate(savedInstanceState);
+ 		setContentView(R.layout.start);
+ 
+ 	}
+ 
+-	protected void onResume(){
++	public void onResume(){
+ 		super.onResume();
+-		test();
++		//test();
+ 	}
+ 	
+ 	public void test(){
+diff --git a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeDieren.java b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeDieren.java
+index 43a1914..f7cb1b8 100644
+--- a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeDieren.java
++++ b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeDieren.java
+@@ -3,9 +3,9 @@ package be.vhackdroid.inspectorlibrary.views;
+ import android.app.Activity;
+ import android.os.Bundle;
+ 
+-public class LibraryInspectorThemeDieren extends Activity {
++public class LibraryInspectorThemeDieren extends LibraryInspectorNfcDummy {
+ 	@Override
+-	protected void onCreate(Bundle savedInstanceState) {
++	public void onCreate(Bundle savedInstanceState) {
+ 		super.onCreate(savedInstanceState);
+ 		setContentView(R.layout.themedieren);
+ 	}
+diff --git a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeDierenHelp.java b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeDierenHelp.java
+index c34141b..b785fdb 100644
+--- a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeDierenHelp.java
++++ b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeDierenHelp.java
+@@ -2,9 +2,9 @@ package be.vhackdroid.inspectorlibrary.views;
+ 
+ import android.app.Activity;
+ 
+-public class LibraryInspectorThemeDierenHelp extends Activity {
++public class LibraryInspectorThemeDierenHelp extends LibraryInspectorNfcDummy {
+ 	@Override
+-	protected void onChildTitleChanged(Activity childActivity,
++	public void onChildTitleChanged(Activity childActivity,
+ 			CharSequence title) {
+ 		super.onChildTitleChanged(childActivity, title);
+ 		setContentView(R.layout.themedierenhelp);
+diff --git a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeGeloof.java b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeGeloof.java
+index 7f73481..7f1d82e 100644
+--- a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeGeloof.java
++++ b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeGeloof.java
+@@ -1,11 +1,10 @@
+ package be.vhackdroid.inspectorlibrary.views;
+ 
+-import android.app.Activity;
+ import android.os.Bundle;
+ 
+-public class LibraryInspectorThemeGeloof extends Activity {
++public class LibraryInspectorThemeGeloof extends LibraryInspectorNfcDummy {
+ 	@Override
+-	protected void onCreate(Bundle savedInstanceState) {
++	public void onCreate(Bundle savedInstanceState) {
+ 		super.onCreate(savedInstanceState);
+ 		setContentView(R.layout.themegeloof);
+ 	}
+diff --git a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeGeloofHelp.java b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeGeloofHelp.java
+index 7f1a581..b72cb28 100644
+--- a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeGeloofHelp.java
++++ b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeGeloofHelp.java
+@@ -3,9 +3,9 @@ package be.vhackdroid.inspectorlibrary.views;
+ import android.app.Activity;
+ import android.os.Bundle;
+ 
+-public class LibraryInspectorThemeGeloofHelp extends Activity {
++public class LibraryInspectorThemeGeloofHelp extends LibraryInspectorNfcDummy {
+ 	@Override
+-	protected void onCreate(Bundle savedInstanceState) {
++	public void onCreate(Bundle savedInstanceState) {
+ 		super.onCreate(savedInstanceState);
+ 		setContentView(R.layout.themegeloofhelp);
+ 	}
+diff --git a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeMuziek.java b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeMuziek.java
+index 4af66bc..1696bee 100644
+--- a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeMuziek.java
++++ b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeMuziek.java
+@@ -1,12 +1,11 @@
+ package be.vhackdroid.inspectorlibrary.views;
+ 
+-import android.app.Activity;
+ import android.os.Bundle;
+ 
+-public class LibraryInspectorThemeMuziek extends Activity {
++public class LibraryInspectorThemeMuziek extends LibraryInspectorNfcDummy {
+ 
+ 	@Override
+-	protected void onCreate(Bundle savedInstanceState) {
++	public void onCreate(Bundle savedInstanceState) {
+ 		super.onCreate(savedInstanceState);
+ 		setContentView(R.layout.thememuziek);
+ 	}
+diff --git a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeMuziekHelp.java b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeMuziekHelp.java
+index 8a33c1c..c4ed2ad 100644
+--- a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeMuziekHelp.java
++++ b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeMuziekHelp.java
+@@ -1,55 +1,11 @@
+ package be.vhackdroid.inspectorlibrary.views;
+ 
+-import android.app.Activity;
+-import android.content.Intent;
+-import android.graphics.Bitmap;
+-import android.graphics.BitmapFactory;
+ import android.os.Bundle;
+-import android.view.View;
+-import android.view.View.OnClickListener;
+-import android.widget.ImageView;
+ 
+-public class LibraryInspectorThemeMuziekHelp extends Activity {
+-	
+-	private int currentImage = -1;
+-	private Bitmap[] images = new Bitmap[4];
+-	
++public class LibraryInspectorThemeMuziekHelp extends LibraryInspectorNfcDummy {
+ 	@Override
+-	protected void onCreate(Bundle savedInstanceState) {
++	public void onCreate(Bundle savedInstanceState) {
+ 		super.onCreate(savedInstanceState);
+ 		setContentView(R.layout.thememuziekhelp);
+-		
+-		// Init Images
+-		images[0] = BitmapFactory.decodeResource(getResources(),
+-				R.drawable.muziek01);
+-		images[0] = BitmapFactory.decodeResource(getResources(),
+-				R.drawable.muziek02);
+-		images[0] = BitmapFactory.decodeResource(getResources(),
+-				R.drawable.muziek03);
+-		images[0] = BitmapFactory.decodeResource(getResources(),
+-				R.drawable.muziek04);
+-		
+-		ImageView arrow = (ImageView) findViewById(R.id.introComicArrow);
+-		arrow.setOnClickListener(new ArrowClicker());
+-
+-		setNextImage();
+-	}
+-	
+-	private void setNextImage() {
+-		currentImage++;
+-		if (currentImage < images.length) {
+-			ImageView imageView = (ImageView) findViewById(R.id.muziekHelpComic);
+-			imageView.setImageBitmap(images[currentImage]);
+-		} else {
+-			finish();
+-			startActivity(new Intent(this, LibraryInspectorThemeMuziek.class));
+-		}
+-	}
+-
+-	private class ArrowClicker implements OnClickListener {
+-		@Override
+-		public void onClick(View v) {
+-			setNextImage();
+-		}
+ 	}
+ }
+\ No newline at end of file
+diff --git a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeSport.java b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeSport.java
+index ec82b93..0d283ea 100644
+--- a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeSport.java
++++ b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeSport.java
+@@ -1,11 +1,10 @@
+ package be.vhackdroid.inspectorlibrary.views;
+ 
+-import android.app.Activity;
+ import android.os.Bundle;
+ 
+-public class LibraryInspectorThemeSport extends Activity {
++public class LibraryInspectorThemeSport extends LibraryInspectorNfcDummy {
+ 	@Override
+-	protected void onCreate(Bundle savedInstanceState) {
++	public void onCreate(Bundle savedInstanceState) {
+ 		super.onCreate(savedInstanceState);
+ 		setContentView(R.layout.themesport);
+ 	}
+diff --git a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeSportHelp.java b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeSportHelp.java
+index f2bf72a..0fc35ea 100644
+--- a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeSportHelp.java
++++ b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeSportHelp.java
+@@ -1,11 +1,10 @@
+ package be.vhackdroid.inspectorlibrary.views;
+ 
+-import android.app.Activity;
+ import android.os.Bundle;
+ 
+-public class LibraryInspectorThemeSportHelp extends Activity {
++public class LibraryInspectorThemeSportHelp extends LibraryInspectorNfcDummy {
+ 	@Override
+-	protected void onCreate(Bundle savedInstanceState) {
++	public void onCreate(Bundle savedInstanceState) {
+ 		super.onCreate(savedInstanceState);
+ 		setContentView(R.layout.themesporthelp);
+ 	}
+diff --git a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeTaal.java b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeTaal.java
+index 9f853ff..35cbe5e 100644
+--- a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeTaal.java
++++ b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeTaal.java
+@@ -1,11 +1,10 @@
+ package be.vhackdroid.inspectorlibrary.views;
+ 
+-import android.app.Activity;
+ import android.os.Bundle;
+ 
+-public class LibraryInspectorThemeTaal extends Activity {
++public class LibraryInspectorThemeTaal extends LibraryInspectorNfcDummy {
+ 	@Override
+-	protected void onCreate(Bundle savedInstanceState) {
++	public void onCreate(Bundle savedInstanceState) {
+ 		super.onCreate(savedInstanceState);
+ 		setContentView(R.layout.themetaal);
+ 	}
+diff --git a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeTaalHelp.java b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeTaalHelp.java
+index a3465f2..0b8c0ab 100644
+--- a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeTaalHelp.java
++++ b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeTaalHelp.java
+@@ -1,11 +1,10 @@
+ package be.vhackdroid.inspectorlibrary.views;
+ 
+-import android.app.Activity;
+ import android.os.Bundle;
+ 
+-public class LibraryInspectorThemeTaalHelp extends Activity {
++public class LibraryInspectorThemeTaalHelp extends LibraryInspectorNfcDummy {
+ 	@Override
+-	protected void onCreate(Bundle savedInstanceState) {
++	public void onCreate(Bundle savedInstanceState) {
+ 		super.onCreate(savedInstanceState);
+ 		setContentView(R.layout.themetaalhelp);
+ 	}
+diff --git a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeWereld.java b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeWereld.java
+index 3fe003e..cb9dd4d 100644
+--- a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeWereld.java
++++ b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeWereld.java
+@@ -1,12 +1,11 @@
+ package be.vhackdroid.inspectorlibrary.views;
+ 
+-import android.app.Activity;
+ import android.os.Bundle;
+ 
+-public class LibraryInspectorThemeWereld extends Activity{
++public class LibraryInspectorThemeWereld extends LibraryInspectorNfcDummy{
+ 
+ 	@Override
+-	protected void onCreate(Bundle savedInstanceState) {
++	public void onCreate(Bundle savedInstanceState) {
+ 		super.onCreate(savedInstanceState);
+ 		setContentView(R.layout.themewereld);
+ 	}	
+diff --git a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeWereldHelp.java b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeWereldHelp.java
+index 24cbc42..10e681c 100644
+--- a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeWereldHelp.java
++++ b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemeWereldHelp.java
+@@ -2,9 +2,9 @@ package be.vhackdroid.inspectorlibrary.views;
+ 
+ import android.app.Activity;
+ 
+-public class LibraryInspectorThemeWereldHelp extends Activity {
++public class LibraryInspectorThemeWereldHelp extends LibraryInspectorNfcDummy {
+ 	@Override
+-	protected void onChildTitleChanged(Activity childActivity,
++	public void onChildTitleChanged(Activity childActivity,
+ 			CharSequence title) {
+ 		super.onChildTitleChanged(childActivity, title);
+ 		setContentView(R.layout.themewereldhelp);
+diff --git a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemes.java b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemes.java
+index 578c2f5..a5316a3 100644
+--- a/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemes.java
++++ b/src/be/vhackdroid/inspectorlibrary/views/LibraryInspectorThemes.java
+@@ -1,6 +1,5 @@
+ package be.vhackdroid.inspectorlibrary.views;
+ 
+-import android.app.Activity;
+ import android.content.Context;
+ import android.content.Intent;
+ import android.os.Bundle;
+@@ -8,12 +7,12 @@ import android.view.View;
+ import android.view.View.OnClickListener;
+ import android.widget.ImageView;
+ 
+-public class LibraryInspectorThemes extends Activity {
++public class LibraryInspectorThemes extends LibraryInspectorNfcDummy {
+ 	
+ 	private Context context;
+ 	
+ 	@Override
+-	protected void onCreate(Bundle savedInstanceState) {
++	public void onCreate(Bundle savedInstanceState) {
+ 		super.onCreate(savedInstanceState);
+ 		setContentView(R.layout.themepicker);
+ 		
