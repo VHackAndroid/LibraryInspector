@@ -96,6 +96,9 @@ public class LibraryInspectorThemes extends LibraryInspectorNfcDummy {
 			sleutelMuziek.setImageBitmap(bmpStatus0);
 		}
 		
+		if (true){
+			sleutelGeloof.setImageBitmap(bmpStatus1);
+		}
 		//TODO: OTHER KEYS
 	}
 }
