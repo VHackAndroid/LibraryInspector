@@ -1,6 +1,7 @@
 package be.vhackdroid.inspectorlibrary.models;
 
-public class Book {
+
+public class Book{
 	
 	protected int id;
 	protected String titel;

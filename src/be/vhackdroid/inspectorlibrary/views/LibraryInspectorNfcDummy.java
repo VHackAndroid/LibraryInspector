@@ -27,6 +27,8 @@ public class LibraryInspectorNfcDummy extends Activity {
 	private DBCreator dbh = LibraryInspectorSplash.dbh;
 	//############################################
 
+	protected Book book;
+	protected Theme theme;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -35,7 +37,6 @@ public class LibraryInspectorNfcDummy extends Activity {
 
 		//Create a new instance of NfcReader.
 		nfcReader = new NfcManager(this);
-		
 		Button btn = (Button)findViewById(R.id.button1);
 		
 		btn.setOnClickListener(new OnClickListener() {
@@ -48,18 +49,6 @@ public class LibraryInspectorNfcDummy extends Activity {
 		});
 	}
 
-//	private void restart(){
-//		Intent i = new Intent();
-//		i.setClass(LibraryInspectorNfcDummy.this, LibraryInspectorNfcDummy.class);
-//		startActivity(i);
-//	}
-	/*
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_main, menu);
-		return true;
-	}
-	*/
 
 	public void onNewIntent(Intent intent) {
 		if (nfcReader.isReadMode() == true) {
@@ -87,14 +76,18 @@ public class LibraryInspectorNfcDummy extends Activity {
 	public void processTag() {
 		String barcode = nfcReader.getTagId();
 		
-		Book book = dbh.getBookByBarcode(barcode);
-		Theme theme = (Theme)dbh.getTheme(book.getThemeId());
+		book = dbh.getBookByBarcode(barcode);
+		theme = (Theme)dbh.getTheme(book.getThemeId());
+		
 		Intent i = null;
+		
 		if(book.getTitel().equals("Inspector")){
 			popup("Proficiat, laat ons starten!");
 			i = new Intent(this, LibraryInspectorIntro.class);
-		} else {
-			switch(theme.getId()){
+			startActivity(i);
+		}
+		
+		switch(theme.getId()){
 			case 0:
 				i = new Intent(this, LibraryInspectorThemeMuziek.class);
 				break;
@@ -111,12 +104,10 @@ public class LibraryInspectorNfcDummy extends Activity {
 				i = new Intent(this, LibraryInspectorThemeGeloof.class);
 				break;
 			}
-		}
-		startActivity(i);
+		i.putExtra("bookid", book.getId());
 	}
 	
 	public void popup(String tekst){
 		Toast.makeText(LibraryInspectorNfcDummy.this, tekst, Toast.LENGTH_SHORT).show();
 	}
-
 }
